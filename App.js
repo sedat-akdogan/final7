@@ -6,7 +6,7 @@ import {Home, User} from './src/stack';
 const App = () => {
   return (
     <NavigationContainer>
-        <Home />
+        <User />
     </NavigationContainer>
   );
 }
