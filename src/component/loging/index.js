@@ -1,6 +1,27 @@
 import React, { useState } from 'react';
+import auth from '@react-native-firebase/auth';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { localisation } from '../../helpers';
 
+
+const SignupApi = () => {
+    auth()
+  .signInWithEmailAndPassword('doe@example.com', 'SuperSecretPassword!')
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+}
 
 const login = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -8,7 +29,7 @@ const login = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>This is Login page</Text>
+            <Text style={styles.text}>{localisation.t("thisistheloginpage")}</Text>
             <TextInput onChange={setEmail}
              placeholderTextColor={'black'}
             placeholder={'enter your email'}
@@ -22,7 +43,7 @@ const login = ({ navigation }) => {
             />
             <TouchableOpacity 
             style={[styles.button, {backgroundColor: 'yellow'}]}
-            onPress={() => {}}
+            onPress={SignupApi}
             >
             <Text style={[styles.text, { fontSize: 20 }]}>Login</Text>
             </TouchableOpacity>
