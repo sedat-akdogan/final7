@@ -1,39 +1,52 @@
-import React from 'react';
-import auth from '@react-native-firebase/auth';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {useState} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import {signup as signupapi} from '../../api';
+import {Localization} from '../../helpers';
 
-
-const SignupApi = () => {
-    auth()
-        .createUserWithEmailAndPassword('doe@example.com', 'SuperSecretPassword!')
-        .then(() => {
-            console.log('User account created & signed in!');
-        })
-        .catch(error => {
-            if (error.code === 'auth/email-already-in-use') {
-                console.log('That email address is already in use!');
-            }
-
-            if (error.code === 'auth/invalid-email') {
-                console.log('That email address is invalid!');
-            }
-
-            console.error(error);
-        });
+function generateRandomCredentials() {
+  const randomIndex = Math.floor(Math.random() * 1000000000); // Generate a random number between 0 and 999999
+  const email = `user${randomIndex}@example.com`;
+  const password = `password${randomIndex}`;
+  return {email, password};
 }
 
-const signup = () => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>This is Sign Up page</Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={SignupApi}
-            >
-            <Text style={[styles.text, { fontSize: 20 }]}>Login</Text>
-            </TouchableOpacity>
-        </View>
-    );
+const signup = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>{Localization.t('thisistheSignuppage')}</Text>
+      <TextInput
+        placeholderTextColor={'black'}
+        placeholder={Localization.t('enteremail')}
+        style={styles.textinput}
+        onChange={setEmail}
+      />
+      <TextInput
+        placeholderTextColor={'black'}
+        placeholder={Localization.t('enterpassword')}
+        style={styles.textinput}
+        onChange={setPassword}
+      />
+      <TouchableOpacity
+        style={[styles.button, {backgroundColor: 'yellow'}]}
+        onPress={() => {
+          const x = generateRandomCredentials();
+          console.log(x.email, x.password);
+          signupapi(x.email, x.password);
+        }}>
+        <Text style={[styles.text, {fontSize: 20}]}>
+          {Localization.t('signup')}
+        </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
