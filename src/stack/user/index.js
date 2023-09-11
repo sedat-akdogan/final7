@@ -1,72 +1,73 @@
 import * as React from 'react';
-import { Button, View, TouchableOpacity, StyleSheet, Text } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import auth from '@react-native-firebase/auth';
+import { View } from 'react-native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
+import {Myplace, Home} from '../../component';
+import { Logout } from '../../api';
+import {Localization} from '../../helpers';
 
-const logoutApi = () => {
-  auth()
-  .signOut()
-  .then(() => console.log('User signed out!'));
-}
+const Logout1 = ({navigation}) => {
+  navigation.goBack();
+};
 
-function HomeScreen({ navigation }) {
+function CustomDrawerContent(props) {
+  const [update, setUpdate] = React.useState(false);
+  const LocalizationUpdate = () => {
+    setUpdate(!update);
+    if (Localization.locale === 'en') {
+      Localization.locale = 'fr';
+    } else {
+      Localization.locale = 'en';
+    }
+    console.log('hello');
+  };
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-      <TouchableOpacity 
-            style={[styles.button, {backgroundColor: 'yellow'}]}
-            onPress={logoutApi}
-            >
-            <Text style={[styles.text, { fontSize: 20 }]}>Logout</Text>
-            </TouchableOpacity>
-    </View>
-  );
-}
+    <DrawerContentScrollView {...props}>
+      <View
+        style={{
+          backgroundColor: 'pink',
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}>
+        <DrawerItemList {...props} />
 
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
+        <DrawerItem
+          label={Localization.t('logout')}
+          onPress={() => {
+            Logout1();
+            console.log('bye!');
+          }}
+        />
+        <DrawerItem
+          style={{backgroundColor: 'green', alignSelf: 'bottom'}}
+          label={Localization.t('language')}
+          onPress={LocalizationUpdate}
+        />
+      </View>
+    </DrawerContentScrollView>
   );
 }
 
 const Drawer = createDrawerNavigator();
 
-function App() {
+const App = () => {
   return (
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      </Drawer.Navigator>
+    <Drawer.Navigator
+      drawerContent={props => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen
+        name={Localization.t('home')}
+        component={Home}
+        options={{headerShown: false}}
+      />
+      <Drawer.Screen name={Localization.t('myplace')} component={Myplace} />
+    </Drawer.Navigator>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-  },
-  textInput: {
-      width: 200,
-      height: 50,
-      marginBottom: 10,
-      backgroundColor: 'green',
-      color: 'black',
-  },
-  text: {
-      color: "black",
-      fontSize: 30,
-  },
-  button: {
-      backgroundColor: 'red',
-      weidth: 100,
-      height: 50,
-  },
-});
-
-export default App; 
+export default App;

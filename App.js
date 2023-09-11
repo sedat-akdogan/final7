@@ -7,7 +7,7 @@ import {Localization} from './src/helpers';
 import store from './src/redux/store';
 import {Provider} from 'react-redux';
 import {useDispatch} from 'react-redux';
-import {setUserID} from './src/redux/slices/userslice';
+import {setUserID} from './src/redux/slices/userclice';
 
 const App = () => {
   return (
@@ -31,9 +31,9 @@ const Main = () => {
   }
 
   useEffect(() => {
-    ///// set localisation to a specific language
-    Localization.locale = 'en';
-    //////listen for authentication state to change
+    // set localisation to a specific language
+    Localization.locale() = 'en';
+    // listen for authentication state to change
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
