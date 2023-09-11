@@ -1,32 +1,47 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 import {Home, User} from './src/stack';
-import React, { useState, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
-import { localisation } from './src/helpers';
 
-function App() {
-  // Set an initializing state whilst Firebase connects
+import {Localization} from './src/helpers';
+import store from './src/redux/store';
+import {Provider} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {setUserID} from './src/redux/slices/userslice';
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Main />
+    </Provider>
+  );
+};
+
+const Main = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
+  const dispatch = useDispatch();
 
   // Handle user state changes
   function onAuthStateChanged(user) {
     setUser(user);
+    // console.log(user);
+    dispatch(setUserID(JSON.stringify(user)));
     if (initializing) setInitializing(false);
   }
 
   useEffect(() => {
-    localisation.locale = 'en' // to change the language
+    ///// set localisation to a specific language
+    Localization.locale = 'en';
+    //////listen for authentication state to change
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
   if (initializing) return null;
-  return (
-    <NavigationContainer>
-      {user ? <User/> : <Home /> }
-    </NavigationContainer>
-  );
-}
 
+  return (
+    <NavigationContainer>{!user ? <Home /> : <User />}</NavigationContainer>
+  );
+};
 export default App;
