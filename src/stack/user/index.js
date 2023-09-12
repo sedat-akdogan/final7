@@ -6,9 +6,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
 import {Myplace, Home} from '../../component';
-import { Logout } from '../../api';
 import {Localization} from '../../helpers';
 
 const Logout1 = ({navigation}) => {

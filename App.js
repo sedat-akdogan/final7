@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Home, User} from './src/stack';
 import auth from '@react-native-firebase/auth';
 
-import {Localization} from './src/helpers';
+import Localization from './src/helpers';
 import store from './src/redux/store';
 import {Provider} from 'react-redux';
 import {useDispatch} from 'react-redux';
@@ -32,7 +32,7 @@ const Main = () => {
 
   useEffect(() => {
     // set localisation to a specific language
-    Localization.locale() = 'en';
+    Localization.locale = 'en';
     // listen for authentication state to change
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount

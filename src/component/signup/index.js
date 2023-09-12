@@ -16,7 +16,7 @@ function generateRandomCredentials() {
   return {email, password};
 }
 
-const signup = ({navigation}) => {
+const Signup = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default signup;
+export default Signup;

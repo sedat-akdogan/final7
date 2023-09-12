@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
 

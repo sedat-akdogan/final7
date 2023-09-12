@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login, Signup } from '../../component';
-import {Localization} from '../../helpers';
+import {Localization} from '../../helpers/index';
 
 
 const Stack = createNativeStackNavigator();

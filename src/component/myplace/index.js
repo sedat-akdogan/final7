@@ -17,7 +17,7 @@ import {
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
     const [users, setUsers] = useState([]); // Initial empty array of users
     const user = JSON.parse(useSelector(state => state?.userR?.userID));
-    console.log('heo', user?.uid);
+    
     useEffect(() => {
       const subscriber = firestore()
         .collection('UserMyPlaces')

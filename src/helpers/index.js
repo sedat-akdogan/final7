@@ -1,3 +1,3 @@
-import localisation from './localisation';
+import Localization from './localization';
 
-export { localisation };
+export default Localization;
