@@ -7,7 +7,6 @@ import {
   TextInput,
 } from 'react-native';
 import {login as loginapi} from '../../api';
-import {Localization} from '../../helpers';
 import {useSelector} from 'react-redux';
 
 const Login = ({navigation}) => {
@@ -16,16 +15,16 @@ const Login = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>{Localization.t('thisistheloginpage')}</Text>
+      <Text style={styles.text}>{'thi is the login page'}</Text>
       <TextInput
         placeholderTextColor={'black'}
-        placeholder={Localization.t('enteremail')}
+        placeholder={'enteremail'}
         style={styles.textInput}
         onChange={setEmail}
       />
       <TextInput
         placeholderTextColor={'black'}
-        placeholder={Localization.t('enterpassword')}
+        placeholder={'enterpassword'}
         style={styles.textInput}
         onChange={setPassword}
       />
@@ -35,15 +34,15 @@ const Login = ({navigation}) => {
           loginapi(email, password);
         }}>
         <Text style={styles.text}>
-          {Localization.t('login')}
+          Login
         </Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate(Localization.t('signup'))}>
+        onPress={() => navigation.navigate('signup')}>
         <Text style={styles.text}>
-          {Localization.t('gotosignup')}
+          Go to Signup
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

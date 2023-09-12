@@ -7,7 +7,6 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 import {Myplace, Home} from '../../component';
-import {Localization} from '../../helpers';
 
 const Logout1 = ({navigation}) => {
   navigation.goBack();
@@ -36,7 +35,7 @@ function CustomDrawerContent(props) {
         <DrawerItemList {...props} />
 
         <DrawerItem
-          label={Localization.t('logout')}
+          label={'logout'}
           onPress={() => {
             Logout1();
             console.log('bye!');
@@ -44,7 +43,7 @@ function CustomDrawerContent(props) {
         />
         <DrawerItem
           style={{backgroundColor: 'green', alignSelf: 'bottom'}}
-          label={Localization.t('language')}
+          label={'language'}
           onPress={LocalizationUpdate}
         />
       </View>
@@ -59,11 +58,11 @@ const App = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
-        name={Localization.t('home')}
+        name={'home'}
         component={Home}
         options={{headerShown: false}}
       />
-      <Drawer.Screen name={Localization.t('myplace')} component={Myplace} />
+      <Drawer.Screen name={'myplace'} component={Myplace} />
     </Drawer.Navigator>
   );
 };

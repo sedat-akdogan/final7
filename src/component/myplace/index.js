@@ -1,14 +1,12 @@
 import {
     View,
     Text,
-    Button,
     StyleSheet,
     ActivityIndicator,
     FlatList,
   } from 'react-native';
   
   import React, {useState, useEffect} from 'react';
-  import {Localization} from '../../helpers';
   import firestore from '@react-native-firebase/firestore';
   import {TouchableOpacity} from 'react-native-gesture-handler';
   import {useSelector} from 'react-redux';
@@ -72,8 +70,8 @@ import {
           />
           <TouchableOpacity
             style={styles.add}
-            onPress={() => navigation.navigate(Localization.t('home'))}>
-            <Text style={styles.text}>{Localization.t('additem')}</Text>
+            onPress={() => navigation.navigate('home')}>
+            <Text style={styles.text}>Ad Item</Text>
           </TouchableOpacity>
         </View>
       </View>
