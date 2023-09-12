@@ -14,15 +14,6 @@ const Logout1 = ({navigation}) => {
 
 function CustomDrawerContent(props) {
   const [update, setUpdate] = React.useState(false);
-  const LocalizationUpdate = () => {
-    setUpdate(!update);
-    if (Localization.locale === 'en') {
-      Localization.locale = 'fr';
-    } else {
-      Localization.locale = 'en';
-    }
-    console.log('hello');
-  };
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -44,7 +35,7 @@ function CustomDrawerContent(props) {
         <DrawerItem
           style={{backgroundColor: 'green', alignSelf: 'bottom'}}
           label={'language'}
-          onPress={LocalizationUpdate}
+          onPress={()=>{}}
         />
       </View>
     </DrawerContentScrollView>

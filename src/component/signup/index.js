@@ -16,33 +16,46 @@ function generateRandomCredentials() {
 }
 
 const Signup = ({navigation}) => {
+  let dummyCredentials = generateRandomCredentials();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>This is Signup Page</Text>
       <TextInput
         placeholderTextColor={'black'}
         placeholder={'enter email'}
-        style={styles.textinput}
+        style={styles.textInput}
         onChange={setEmail}
       />
       <TextInput
         placeholderTextColor={'black'}
-        placeholder={'enterpassword'}
+        placeholder={'enter password'}
         style={styles.textInput}
         onChange={setPassword}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={[styles.button, {backgroundColor: 'yellow'}]}
         onPress={() => {
-          const x = generateRandomCredentials();
-          console.log(x.email, x.password);
-          signupapi(x.email, x.password);
+          if (!email || !password) {
+            ToastAndroid.show(
+              'Email and  Password is required.',
+              ToastAndroid.SHORT,
+            );
+            // errors.email = 'Email is required.';
+          } else if (!/\S+@\S+\.\S+/.test(email) || password.length < 6) {
+            // errors.email = 'Email is invalid.';
+            ToastAndroid.show(
+              'Email or password is invalid, Please check your entries.',
+              ToastAndroid.SHORT,
+            );
+          } else {
+            signupapi(email, password);
+          }
         }}>
-        <Text style={styles.text}>
-          Signup
-        </Text>
+        <Text style={[styles.text, {fontSize: 20}]}>Signup</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

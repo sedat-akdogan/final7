@@ -3,13 +3,22 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Home, User} from './src/stack';
 import auth from '@react-native-firebase/auth';
 
-import Localization from './src/helpers';
 import store from './src/redux/store';
 import {Provider} from 'react-redux';
-import {useDispatch} from 'react-redux';
+
+import {useDispatch, useSelector} from 'react-redux';
+
 import {setUserID} from './src/redux/slices/userclice';
 
+import {checkPermission, requestPermission} from './src/helpers/permissions';
+
 const App = () => {
+  useEffect(() => {
+    checkPermission('android.permission.ACCESS_FINE_LOCATION');
+    checkPermission('android.permission.ACCESS_COARSE_LOCATION');
+    requestPermission('android.permission.ACCESS_FINE_LOCATION');
+    requestPermission('android.permission.ACCESS_COARSE_LOCATION');
+  }, []);
   return (
     <Provider store={store}>
       <Main />
@@ -31,8 +40,6 @@ const Main = () => {
   }
 
   useEffect(() => {
-    // set localisation to a specific language
-    Localization.locale = 'en';
     // listen for authentication state to change
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
