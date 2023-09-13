@@ -5,9 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  ToastAndroid,
 } from 'react-native';
 import {login as loginapi} from '../../api';
+import Toast from 'react-native-simple-toast';
 
 
 const Login = ({navigation}) => {
@@ -23,8 +23,7 @@ const Login = ({navigation}) => {
         placeholder={'enteremail'}
         style={styles.textInput}
         onChange={setEmail}
-        autoCapitalize="false"
-       
+        autoCapitalize="none"
       />
       <TextInput
         value={password}
@@ -32,22 +31,21 @@ const Login = ({navigation}) => {
         placeholder={'enter password'}
         style={styles.textInput}
         onChange={setPassword}
-        autoCapitalize="false"
         secureTextEntry={true}
-     
+        autoCapitalize="none"
       />
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
           if (!email || !password) {
-            ToastAndroid.show(
+            Toast.show(
               'Email and  Password is required.',
-              ToastAndroid.SHORT,
+              Toast.SHORT,
             );
           } else if (!/\S+@\S+\.\S+/.test(email) || password.length < 6) {
-            ToastAndroid.show(
+            Toast.show(
               'Email or password is invalid, Please check your entries.',
-              ToastAndroid.SHORT,
+              Toast.SHORT,
             );
           } else {
             loginapi(email, password);
