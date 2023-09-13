@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useState } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -6,14 +6,15 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import {login as loginapi} from '../../api';
+
+import {Login as LoginApi} from '../../api';
 import Toast from 'react-native-simple-toast';
 
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState(''); 
-
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>this is the login page</Text>
@@ -22,7 +23,7 @@ const Login = ({navigation}) => {
         placeholderTextColor={'white'}
         placeholder={'enter email'}
         style={styles.textInput}
-        onChange={setEmail}
+        onChangeText={setEmail}
         autoCapitalize="none"
       />
       <TextInput
@@ -30,7 +31,7 @@ const Login = ({navigation}) => {
         placeholderTextColor={'white'}
         placeholder={'enter password'}
         style={styles.textInput}
-        onChange={setPassword}
+        onChangeText={setPassword}
         secureTextEntry={true}
         autoCapitalize="none"
       />
@@ -48,7 +49,7 @@ const Login = ({navigation}) => {
               Toast.SHORT,
             );
           } else {
-            loginapi(email, password);
+            LoginApi(email, password);
           }
         }}>
         <Text style={styles.text}>Login</Text>
@@ -56,7 +57,7 @@ const Login = ({navigation}) => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.text}>Signup</Text>
+        <Text style={styles.text}>OR, Go to Signup</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

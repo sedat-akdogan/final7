@@ -6,18 +6,11 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {signup as signupapi} from '../../api';
+import {Signup as SignupApi} from '../../api';
 import Toast from 'react-native-simple-toast';
 
-function generateRandomCredentials() {
-  const randomIndex = Math.floor(Math.random() * 1000000000); // Generate a random number between 0 and 999999
-  const email = `user${randomIndex}@example.com`;
-  const password = `password${randomIndex}`;
-  return {email, password};
-}
 
 const Signup = ({navigation}) => {
-  let dummyCredentials = generateRandomCredentials();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,14 +42,14 @@ const Signup = ({navigation}) => {
               Toast.SHORT,
             );
             // errors.email = 'Email is required.';
-          } else if (!/\S+@\S+\.\S+/.test(email) || password.length < 6) {
+          } else if (password.length < 6) {
             // errors.email = 'Email is invalid.';
             Toast.show(
               'Email or password is invalid, Please check your entries.',
               Toast.SHORT,
             );
           } else {
-            signupapi(email, password);
+            SignupApi(email, password);
           }
         }}>
         <Text style={styles.text}>Signup</Text>
@@ -83,7 +76,9 @@ const styles = StyleSheet.create({
       width: '80%',
       color: "black",
       color: "green",
-      fontSize: 20
+      fontSize: 20,
+      textAlign: 'center',
+    textAlignVertical: 'center',
     },
     button: {
       width: '80%',

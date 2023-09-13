@@ -5,14 +5,10 @@ import auth from '@react-native-firebase/auth';
 
 
 import {Provider} from 'react-redux';
-
 import {useDispatch, useSelector} from 'react-redux';
-
-// import {setUserID} from './src/redux/slices/userSlice';
 
 import {checkPermission, requestPermission} from './src/helpers/permissions';
 import store from './src/app/store';
-import { Text, View } from 'react-native';
 import { setUserID } from './src/feature/user/userSlice';
 
 const App = () => {
