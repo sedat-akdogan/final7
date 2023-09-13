@@ -1,4 +1,4 @@
-import {ToastAndroid} from 'react-native';
+import Toast from 'react-native-simple-toast';
 import {request, check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
 const checkPermission = permission => {
@@ -9,48 +9,48 @@ const checkPermission = permission => {
           console.log(
             'This feature is not available (on this device / in this context)',
           );
-          ToastAndroid.show(
+          Toast.show(
             'This feature is not available (on this device / in this context)',
-            ToastAndroid.SHORT,
+            Toast.SHORT,
           );
           break;
         case RESULTS.DENIED:
           console.log(
             'The permission has not been requested / is denied but requestable',
           );
-          ToastAndroid.show(
+          Toast.show(
             'The permission has not been requested / is denied but requestable',
-            ToastAndroid.SHORT,
+            Toast.SHORT,
           );
           break;
         case RESULTS.LIMITED:
           console.log('The permission is limited: some actions are possible');
-          ToastAndroid.show(
+          Toast.show(
             'The permission is limited: some actions are possible',
-            ToastAndroid.SHORT,
+            Toast.SHORT,
           );
           break;
         case RESULTS.GRANTED:
           console.log('The permission is granted');
-          ToastAndroid.show('The permission is granted', ToastAndroid.SHORT);
+          Toast.show('The permission is granted', Toast.SHORT);
           break;
         case RESULTS.BLOCKED:
           console.log('The permission is denied and not requestable anymore');
-          ToastAndroid.show(
+          Toast.show(
             'The permission is denied and not requestable anymore',
-            ToastAndroid.SHORT,
+            Toast.SHORT,
           );
           break;
       }
     })
     .catch(error => {
-      ToastAndroid.show(error, ToastAndroid.SHORT);
+      Toast.show(error, Toast.SHORT);
     });
 };
 
 const requestPermission = permission => {
   request(permission).then(result => {
-    ToastAndroid.show(result, ToastAndroid.SHORT);
+    Toast.show(result, Toast.SHORT);
   });
 };
 export {checkPermission, requestPermission};

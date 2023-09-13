@@ -4,7 +4,6 @@ import firestore from '@react-native-firebase/firestore';
 const getCurrentPosition = userID => {
   Geolocation.getCurrentPosition(
     position => {
-      // let randomInteger = Math.floor(Math.random() * 11) + 10;
       console.log(position);
       firestore()
         .collection('UsersPosition')

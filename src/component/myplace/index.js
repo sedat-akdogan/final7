@@ -70,7 +70,7 @@ import {
           />
           <TouchableOpacity
             style={styles.add}
-            onPress={() => navigation.navigate('home')}>
+            onPress={() => navigation.navigate('Home')}>
             <Text style={styles.text}>Add Item</Text>
           </TouchableOpacity>
         </View>

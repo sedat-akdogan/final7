@@ -25,6 +25,12 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  	<string>YOUR TEXT</string>
+  	<key>NSLocationAlwaysUsageDescription</key>
+  	<string>YOUR TEXT</string>
+  	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
@@ -35,6 +41,7 @@
 			</dict>
 		</dict>
 	</dict>
+	
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UILaunchStoryboardName</key>

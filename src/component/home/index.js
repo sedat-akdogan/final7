@@ -1,4 +1,4 @@
-import {useRef, useEffect, useState} from 'react';
+import { useRef, useEffect, useState } from 'react';
 import {
   View,
   Button,
@@ -8,15 +8,15 @@ import {
   Text,
   ToastAndroid,
 } from 'react-native';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import firestore from '@react-native-firebase/firestore';
-import {useSelector} from 'react-redux';
-import {getCurrentPosition} from '../../helpers/geolocation';
-import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import { useSelector } from 'react-redux';
+import { getCurrentPosition } from '../../helpers/geolocation';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 import mapMarkers from './markers';
-import {Marker} from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 
 const postdata = (data, user) => {
   firestore()
@@ -37,7 +37,7 @@ const postdata = (data, user) => {
     });
 };
 
-function HomeScreen({navigation}) {
+function HomeScreen({ navigation }) {
   const user = JSON.parse(useSelector(state => state?.userR?.userID));
   const [position, setPosition] = useState(null);
   // console.log('heo', user?.uid);
@@ -90,12 +90,12 @@ function HomeScreen({navigation}) {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <MapView provider={PROVIDER_GOOGLE} style={styles.map} region={location}>
         {position ? mapMarkers(position) : mapMarkers()}
       </MapView>
       <View style={styles.organizer}>
-        <View style={{flexDirection: 'row', backgroundColor: 'black'}}>
+        <View style={{ flexDirection: 'row', backgroundColor: 'black' }}>
           <TouchableOpacity
             style={{
               backgroundColor: 'red',
@@ -108,14 +108,14 @@ function HomeScreen({navigation}) {
               alignItems: 'center',
             }}
             onPress={() => navigation.openDrawer()}>
-            <Text style={{color: 'white'}}>!</Text>
+            <Text style={{ color: 'white' }}>!</Text>
           </TouchableOpacity>
           <GooglePlacesAutocomplete
             ref={ref}
             textInputProps={{
               placeholderTextColor: 'black',
             }}
-            placeholder={Localization.t('Enterlocation')}
+            placeholder={'Enter location'}
             minLength={2}
             autoFocus={false}
             returnKeyType={'default'}
@@ -160,7 +160,7 @@ function HomeScreen({navigation}) {
                 height: 0.5,
                 backgroundColor: '#c8c7cc',
               },
-              description: {color: 'black'},
+              description: { color: 'black' },
               loader: {
                 flexDirection: 'row',
                 justifyContent: 'flex-end',
@@ -183,8 +183,8 @@ function HomeScreen({navigation}) {
               // console.log(load.current);
             }}
             query={{
-              key: 'AIzaSyD-kAyJVWxMBF1M0hFf8LnZsXRdEUk2YAI',
-              language: Localization.t('language'),
+              key: 'AIzaSyAeBJiT24f1_1dKNL32nL_Cg-bWs22vQoA',
+              language: 'en',
             }}
           />
         </View>

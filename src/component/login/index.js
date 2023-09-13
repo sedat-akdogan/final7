@@ -8,11 +8,11 @@ import {
   ToastAndroid,
 } from 'react-native';
 import {login as loginapi} from '../../api';
-import {useSelector} from 'react-redux';
+
 
 const Login = ({navigation}) => {
-  const [email, setEmail] = useState('biendou@example.com'); //
-  const [password, setPassword] = useState('SuperSecretPassword!'); //'SuperSecretPassword!'
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState(''); 
 
   return (
     <SafeAreaView style={styles.container}>
@@ -20,11 +20,11 @@ const Login = ({navigation}) => {
       <TextInput
         value={email}
         placeholderTextColor={'black'}
-        placeholder={Localization.t('enteremail')}
-        style={styles.textinput}
+        placeholder={'enteremail'}
+        style={styles.textInput}
         onChange={setEmail}
         autoCapitalize="false"
-        // clearTextOnFocus="true"
+       
       />
       <TextInput
         value={password}
@@ -34,19 +34,17 @@ const Login = ({navigation}) => {
         onChange={setPassword}
         autoCapitalize="false"
         secureTextEntry={true}
-        // clearTextOnFocus="true"
+     
       />
       <TouchableOpacity
-        style={[styles.button, {backgroundColor: 'yellow'}]}
+        style={styles.button}
         onPress={() => {
           if (!email || !password) {
             ToastAndroid.show(
               'Email and  Password is required.',
               ToastAndroid.SHORT,
             );
-            // errors.email = 'Email is required.';
           } else if (!/\S+@\S+\.\S+/.test(email) || password.length < 6) {
-            // errors.email = 'Email is invalid.';
             ToastAndroid.show(
               'Email or password is invalid, Please check your entries.',
               ToastAndroid.SHORT,
@@ -55,15 +53,12 @@ const Login = ({navigation}) => {
             loginapi(email, password);
           }
         }}>
-        <Text style={[styles.text, {fontSize: 20}]}>Login</Text>
+        <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
-
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('signup')}>
-        <Text style={[styles.text, {fontSize: 20}]}>
-          go to signup
-        </Text>
+        onPress={() => navigation.navigate('Signup')}>
+        <Text style={styles.text}>Signup</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
