@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: {
     userID: '',
@@ -8,7 +8,7 @@ export const userSlice = createSlice({
 
   reducers: {
     setUserID: (state, action) => {
-      console.log('Payload', action.payload);
+      // console.log('Payload', action.payload);
       state.userID = action.payload;
     },
     resetUserID: state => {

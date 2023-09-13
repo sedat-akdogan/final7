@@ -19,15 +19,15 @@ const Login = ({navigation}) => {
       <Text style={styles.text}>this is the login page</Text>
       <TextInput
         value={email}
-        placeholderTextColor={'black'}
-        placeholder={'enteremail'}
+        placeholderTextColor={'white'}
+        placeholder={'enter email'}
         style={styles.textInput}
         onChange={setEmail}
         autoCapitalize="none"
       />
       <TextInput
         value={password}
-        placeholderTextColor={'black'}
+        placeholderTextColor={'white'}
         placeholder={'enter password'}
         style={styles.textInput}
         onChange={setPassword}

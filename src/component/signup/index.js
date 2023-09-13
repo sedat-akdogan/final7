@@ -26,7 +26,6 @@ const Signup = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>This is Signup Page</Text>
       <TextInput
-        value={email}
         placeholderTextColor={'black'}
         placeholder={'enter email'}
         style={styles.textInput}
@@ -34,7 +33,6 @@ const Signup = ({navigation}) => {
         autoCapitalize="none"
       />
       <TextInput
-        value={password}
         placeholderTextColor={'black'}
         placeholder={'enter password'}
         style={styles.textInput}
