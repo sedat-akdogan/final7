@@ -24,12 +24,13 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>YOUR TEXT</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>YOUR TEXT</string>
+ 
 	<key>NSAppTransportSecurity</key>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  	<string>YOUR TEXT</string>
-  	<key>NSLocationAlwaysUsageDescription</key>
-  	<string>YOUR TEXT</string>
-  	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	 
 
 	<dict>
 		<key>NSExceptionDomains</key>
