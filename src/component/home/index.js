@@ -1,21 +1,19 @@
 import { useRef, useEffect, useState } from 'react';
 import {
   View,
-  Button,
   StyleSheet,
-  TextInput,
   TouchableOpacity,
   Text,
 } from 'react-native';
+import Toast from 'react-native-simple-toast';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import firestore from '@react-native-firebase/firestore';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
-import firestore from '@react-native-firebase/firestore';
 import { useSelector } from 'react-redux';
 import { getCurrentPosition } from '../../helpers/geolocation';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 import mapMarkers from './markers';
-import { Marker } from 'react-native-maps';
 
 const postdata = (data, user) => {
   firestore()
@@ -90,7 +88,7 @@ function HomeScreen({ navigation }) {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <MapView provider={PROVIDER_GOOGLE} style={styles.map} region={location}>
         {position ? mapMarkers(position) : mapMarkers()}
       </MapView>
@@ -194,7 +192,7 @@ function HomeScreen({ navigation }) {
             if (load.current === null) {
               ToastAndroid.show(
                 "please select a location",
-                ToastAndroid.SHORT,
+                Toast.SHORT,
               );
               // alert('please enter a location');
             } else {
@@ -206,7 +204,7 @@ function HomeScreen({ navigation }) {
           <Text style={styles.text}>{'additem'}</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({

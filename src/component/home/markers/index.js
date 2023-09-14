@@ -1,5 +1,5 @@
 import {Marker} from 'react-native-maps';
-import {View, Text} from 'react-native';
+
 
 const mapMarkers = (
   markers = [
@@ -30,15 +30,6 @@ const mapMarkers = (
       coordinate={{latitude: marker.lat, longitude: marker.lng}}
       title={marker.title}
       description={marker.description}>
-      {/* <View
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: 40,
-          backgroundColor: 'red',
-        }}>
-        <Text>a</Text>
-      </View> */}
     </Marker>
   ));
 };

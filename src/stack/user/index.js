@@ -49,11 +49,11 @@ const App = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
-        name={'home'}
+        name={'Home'}
         component={Home}
         options={{headerShown: false}}
       />
-      <Drawer.Screen name={'myplace'} component={Myplace} />
+      <Drawer.Screen name={'My place'} component={Myplace} />
     </Drawer.Navigator>
   );
 };
