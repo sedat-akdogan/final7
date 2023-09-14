@@ -14,7 +14,7 @@ import {
   function NotificationsScreen({navigation}) {
     const [loading, setLoading] = useState(true); // Set loading to true on component mount
     const [users, setUsers] = useState([]); // Initial empty array of users
-    const user = JSON.parse(useSelector(state => state?.userR?.userID));
+    const user = useSelector(state => state?.userR?.userID);
     
     useEffect(() => {
       const subscriber = firestore()

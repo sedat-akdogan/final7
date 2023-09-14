@@ -6,7 +6,6 @@ import {
   TextInput,
   TouchableOpacity,
   Text,
-  ToastAndroid,
 } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
@@ -29,18 +28,19 @@ const postdata = (data, user) => {
       placeName: data.main_text,
     })
     .then(() => {
-      ToastAndroid.show(
+      Toast.show(
         'Place added successfully',
-        ToastAndroid.LONG,
+        Toast.LONG,
       );
       console.log('User added!');
     });
 };
 
 function HomeScreen({ navigation }) {
-  const user = JSON.parse(useSelector(state => state?.userR?.userID));
+  const user = useSelector(state => state?.userR?.userID);
   const [position, setPosition] = useState(null);
-  // console.log('heo', user?.uid);
+  console.log("user", user)
+
   const [location, setLocation] = useState({
     latitude: 37.78825,
     longitude: -122.4324,

@@ -43,7 +43,7 @@ const Login = ({navigation}) => {
               'Email and  Password is required.',
               Toast.SHORT,
             );
-          } else if (!/\S+@\S+\.\S+/.test(email) || password.length < 6) {
+          } else if (password.length < 6) {
             Toast.show(
               'Email or password is invalid, Please check your entries.',
               Toast.SHORT,

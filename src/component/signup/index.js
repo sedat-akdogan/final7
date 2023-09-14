@@ -10,7 +10,7 @@ import {Signup as SignupApi} from '../../api';
 import Toast from 'react-native-simple-toast';
 
 
-const Signup = ({navigation}) => {
+const Signup = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,14 +22,14 @@ const Signup = ({navigation}) => {
         placeholderTextColor={'black'}
         placeholder={'enter email'}
         style={styles.textInput}
-        onChange={setEmail}
+        onChangeText={setEmail}
         autoCapitalize="none"
       />
       <TextInput
         placeholderTextColor={'black'}
         placeholder={'enter password'}
         style={styles.textInput}
-        onChange={setPassword}
+        onChangeText={setPassword}
         autoCapitalize="none"
         secureTextEntry={true}
       />
@@ -41,9 +41,7 @@ const Signup = ({navigation}) => {
               'Email and  Password is required.',
               Toast.SHORT,
             );
-            // errors.email = 'Email is required.';
           } else if (password.length < 6) {
-            // errors.email = 'Email is invalid.';
             Toast.show(
               'Email or password is invalid, Please check your entries.',
               Toast.SHORT,
